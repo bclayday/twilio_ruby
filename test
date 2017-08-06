@@ -1,0 +1,20 @@
+require 'twilio-ruby'
+
+accountSID = 'MY_KEY'
+authToken = 'MY_KEY'
+
+@client = Twilio::Rest::Client.new accountSID, authToken
+
+from = '+1 API#'
+
+freinds = { '+1 Your ' => "You"}
+
+freinds.each do |key, value|
+	message = @client.account.messages.create {
+										:from :: from,
+										:to :: key,
+										:body :: "Hay #{value}, I made a program to send text"
+	}
+	puts "sent message to #{value}"
+
+end 
